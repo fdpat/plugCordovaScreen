@@ -18,6 +18,7 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.os.Vibrator;
 
 
 public class AlarmPlugin extends CordovaPlugin {
@@ -41,6 +42,9 @@ public class AlarmPlugin extends CordovaPlugin {
 	        KeyguardManager keyguardManager = (KeyguardManager) this.cordova.getActivity().getSystemService(Context.KEYGUARD_SERVICE); 
 	        KeyguardLock keyguardLock =  keyguardManager.newKeyguardLock("TAG");
 	        keyguardLock.disableKeyguard();
+
+	        Vibrator v = (Vibrator) this.cordova.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        	v.vibrate(1000);
 	    }
 	    
 	@Override
