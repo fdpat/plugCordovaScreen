@@ -28,13 +28,20 @@ public class AlarmReceiver extends BroadcastReceiver {
         keyguardLock.disableKeyguard();
 
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(10000);
+        v.vibrate(2000);
    
         intent = new Intent();
         intent.setAction("com.uniclau.alarmplugin.ALARM");
         intent.setPackage(context.getPackageName());
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("url", "file:///android_asset/www/index2.html");
-        context.startActivity(intent);
+        
+		cordova.getThreadPool().execute(new Runnable() {
+			public void run() {
+				// Main Code goes here
+				context.startActivity(intent);
+				//callbackContext.success();
+			}
+		});
     }
 }
