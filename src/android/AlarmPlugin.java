@@ -50,13 +50,14 @@ public class AlarmPlugin extends CordovaPlugin {
 	    }
 	    
 	@Override
-	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+	public boolean execute(String action, JSONObject args, CallbackContext callbackContext) throws JSONException {
 		try {
 			if ("programAlarm".equals(action)) {
 				id++;
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-				Date aDate = sdf.parse(args.getString(0).replace("Z", "+0000"));
-				//int idz = args.getInt(1);
+				Date aDate = sdf.parse(args.getString("ringDate").replace("Z", "+0000"));
+				int idz = args.getInt("ringId");
+				
 				Date n = new Date();
 				if(aDate.before(n)) {
 					callbackContext.error("The date is in the past");
@@ -73,7 +74,7 @@ public class AlarmPlugin extends CordovaPlugin {
 				PendingIntent alarmIntent;     
 				Intent intent = new Intent(this.cordova.getActivity(), AlarmReceiver.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), id, intent, 0);
+				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), idz, intent, 0);
 				
 				alarmMgr.cancel(alarmIntent);
 				alarmMgr.set(AlarmManager.RTC_WAKEUP,  aDate.getTime(), alarmIntent);
