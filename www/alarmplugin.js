@@ -8,7 +8,7 @@ var alarm = {
             errorCallback,
             "AlarmPlugin",
             "programAlarm",
-            [{alarmDate,id}]
+            [alarmDate]
         );
     },
     setNew: function(alarmDate, successCallback, errorCallback){
