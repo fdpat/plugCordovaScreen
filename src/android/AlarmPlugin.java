@@ -22,7 +22,7 @@ import android.os.Vibrator;
 
 
 public class AlarmPlugin extends CordovaPlugin {
-
+	public static int id;
 	
 	   @Override
 	    public void onPause(boolean multitasking) {
@@ -52,6 +52,7 @@ public class AlarmPlugin extends CordovaPlugin {
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		try {
 			if ("programAlarm".equals(action)) {
+				id++;
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 				Date aDate = sdf.parse(args.getString(0).replace("Z", "+0000"));
 				
@@ -71,7 +72,7 @@ public class AlarmPlugin extends CordovaPlugin {
 				PendingIntent alarmIntent;     
 				Intent intent = new Intent(this.cordova.getActivity(), AlarmReceiver.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), 0, intent, 0);
+				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), id, intent, 0);
 				
 				alarmMgr.cancel(alarmIntent);
 				alarmMgr.set(AlarmManager.RTC_WAKEUP,  aDate.getTime(), alarmIntent);
