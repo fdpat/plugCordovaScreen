@@ -25,12 +25,7 @@ public class AlarmBoot extends BroadcastReceiver {
 				PendingIntent alarmIntent;     
 				Intent intent = new Intent(context, AlarmReceiver.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-								 cordova.getActivity().runOnUiThread(new Runnable() {
-					public void run() {
-						alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-					}
-				});
-				
+				alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 				
 				alarmMgr.set(AlarmManager.RTC_WAKEUP,  dt, alarmIntent);        		
         	}
