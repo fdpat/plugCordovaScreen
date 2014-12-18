@@ -52,7 +52,7 @@ public class AlarmPlugin extends CordovaPlugin {
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		try {
 			if ("programAlarm".equals(action)) {
-				cordova.getThreadPool().execute(new Runnable() {
+				 cordova.getActivity().runOnUiThread(new Runnable() {
 					public void run() {
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 				Date aDate = sdf.parse(args.getString(0).replace("Z", "+0000"));
