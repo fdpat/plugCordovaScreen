@@ -23,7 +23,6 @@ import android.os.Vibrator;
 
 
 public class AlarmPlugin extends CordovaPlugin {
-	public static int id;
 	
 	   @Override
 	    public void onPause(boolean multitasking) {
@@ -54,10 +53,10 @@ public class AlarmPlugin extends CordovaPlugin {
 		try {
 			if ("programAlarm".equals(action)) {
 				JSONObject arg_object = args.getJSONObject(0);
-				id++;
+
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 				Date aDate = sdf.parse(arg_object.getString("ringDate").replace("Z", "+0000"));
-				int idz = arg_object.getInt("ringId");
+				int id = arg_object.getInt("ringId");
 				
 				Date n = new Date();
 				if(aDate.before(n)) {
@@ -75,43 +74,27 @@ public class AlarmPlugin extends CordovaPlugin {
 				PendingIntent alarmIntent;     
 				Intent intent = new Intent(this.cordova.getActivity(), AlarmReceiver.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), idz, intent, 0);
+				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), id, intent, 0);
 				
 				alarmMgr.cancel(alarmIntent);
 				alarmMgr.set(AlarmManager.RTC_WAKEUP,  aDate.getTime(), alarmIntent);
 				
 				callbackContext.success("Alarm set at: " +sdf.format(aDate));
 			    return true; 		
-			}else if("programAlarmNew".equals(action)){
+			}else if("unsetAlarm".equals(action)){
 				JSONObject arg_object = args.getJSONObject(0);
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-				Date aDate = sdf.parse(arg_object.getString("ringDate").replace("Z", "+0000"));
-				
-				Date n = new Date();
-				if(aDate.before(n)) {
-					callbackContext.error("The date is in the past");
-					return true;
-				}
-
-				SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this.cordova.getActivity());
-				SharedPreferences.Editor editor = settings.edit();
-	            editor.putLong("AlarmPlugin.AlarmDate", aDate.getTime()); //$NON-NLS-1$
-	            editor.commit();
+				int id = arg_object.getInt("ringId");
 				
 				AlarmManager alarmMgr = (AlarmManager)(this.cordova.getActivity().getSystemService(Context.ALARM_SERVICE));
 				
 				PendingIntent alarmIntent;     
 				Intent intent = new Intent(this.cordova.getActivity(), AlarmReceiver.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), 0, intent, 0);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), id, intent, FLAG_CANCEL_CURRENT);
 				
 				alarmMgr.cancel(alarmIntent);
-				alarmMgr.set(AlarmManager.RTC_WAKEUP,  aDate.getTime(), alarmIntent);
-				
-				callbackContext.success("Alarm set at: " +sdf.format(aDate));
-				
+				return true;
 			}
-			return false;		
 		} catch(Exception e) {
 		    System.err.println("Exception: " + e.getMessage());
 		    callbackContext.error(e.getMessage());

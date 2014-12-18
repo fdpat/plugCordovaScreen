@@ -12,7 +12,7 @@ var alarm = {
 			"ringId" : id}]
         );
     },
-    setNew: function(alarmDate, successCallback, errorCallback){
+    unset: function(id, successCallback, errorCallback){
         if(alarmDate < new Date())
             return;
 
@@ -20,8 +20,8 @@ var alarm = {
             successCallback,
             errorCallback,
             "AlarmPlugin",
-            "programAlarmNew",
-            [alarmDate]
+            "unsetAlarm",
+            [{"ringId":alarmDate}]
         );
     }
 };
