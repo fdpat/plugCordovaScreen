@@ -9,7 +9,7 @@ var alarm = {
             "AlarmPlugin",
             "programAlarm",
 			[{alarmDate,
-			id}]
+			"id":id}]
         );
     },
     setNew: function(alarmDate, successCallback, errorCallback){
