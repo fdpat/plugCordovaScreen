@@ -53,10 +53,11 @@ public class AlarmPlugin extends CordovaPlugin {
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		try {
 			if ("programAlarm".equals(action)) {
+				JSONObject arg_object = args.getJSONObject(0);
 				id++;
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-				Date aDate = sdf.parse(args.getString("ringDate").replace("Z", "+0000"));
-				int idz = args.getInt("ringId");
+				Date aDate = sdf.parse(arg_object.getString("ringDate").replace("Z", "+0000"));
+				int idz = arg_object.getInt("ringId");
 				
 				Date n = new Date();
 				if(aDate.before(n)) {
@@ -82,9 +83,9 @@ public class AlarmPlugin extends CordovaPlugin {
 				callbackContext.success("Alarm set at: " +sdf.format(aDate));
 			    return true; 		
 			}else if("programAlarmNew".equals(action)){
-
+				JSONObject arg_object = args.getJSONObject(0);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-				Date aDate = sdf.parse(args.getString("ringDate").replace("Z", "+0000"));
+				Date aDate = sdf.parse(arg_object.getString("ringDate").replace("Z", "+0000"));
 				
 				Date n = new Date();
 				if(aDate.before(n)) {
