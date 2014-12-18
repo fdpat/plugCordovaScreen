@@ -35,13 +35,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent.setPackage(context.getPackageName());
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("url", "file:///android_asset/www/index2.html");
-        
-		cordova.getThreadPool().execute(new Runnable() {
-			public void run() {
-				// Main Code goes here
-				context.startActivity(intent);
-				//callbackContext.success();
-			}
-		});
+        context.startActivity(intent);
     }
 }
