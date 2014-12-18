@@ -2,18 +2,14 @@ var alarm = {
     set: function(alarmDate, successCallback, errorCallback) {
         if(alarmDate < new Date())
     		return;
-    									cordova.getThreadPool().execute(new Runnable() {
-            public void run() {
-						        cordova.exec(
+    	
+        cordova.exec(
             successCallback,
             errorCallback,
             "AlarmPlugin",
             "programAlarm",
             [alarmDate]
         );
-					}
-				});
-
     },
     setNew: function(alarmDate, successCallback, errorCallback){
         if(alarmDate < new Date())
