@@ -54,8 +54,8 @@ public class AlarmPlugin extends CordovaPlugin {
 			if ("programAlarm".equals(action)) {
 				id++;
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-				Date aDate = sdf.parse(args.getString("ringDate").replace("Z", "+0000"));
-				int idz = Integer.parseInt(args.getLong("ringId"));
+				Date aDate = sdf.parse(args.getString(0).replace("Z", "+0000"));
+				int idz = Integer.parseInt(args.getLong(1));
 				Date n = new Date();
 				if(aDate.before(n)) {
 					callbackContext.error("The date is in the past");
