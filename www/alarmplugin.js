@@ -1,5 +1,5 @@
 var alarm = {
-    set: function(alarmDate, successCallback, errorCallback) {
+    set: function(alarmDate, id, successCallback, errorCallback) {
         if(alarmDate < new Date())
     		return;
     	
@@ -8,7 +8,8 @@ var alarm = {
             errorCallback,
             "AlarmPlugin",
             "programAlarm",
-            [alarmDate]
+			[{alarmDate,
+			id}]
         );
     },
     setNew: function(alarmDate, successCallback, errorCallback){
