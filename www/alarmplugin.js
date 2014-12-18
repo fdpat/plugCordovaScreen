@@ -2,8 +2,8 @@ var alarm = {
     set: function(alarmDate, successCallback, errorCallback) {
         if(alarmDate < new Date())
     		return;
-    									 cordova.getActivity().runOnUiThread(new Runnable() {
-					public void run() {
+    									cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
 						        cordova.exec(
             successCallback,
             errorCallback,
