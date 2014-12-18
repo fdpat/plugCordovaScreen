@@ -95,6 +95,7 @@ public class AlarmPlugin extends CordovaPlugin {
 				alarmMgr.cancel(alarmIntent);
 				return true;
 			}
+			return false;
 		} catch(Exception e) {
 		    System.err.println("Exception: " + e.getMessage());
 		    callbackContext.error(e.getMessage());
