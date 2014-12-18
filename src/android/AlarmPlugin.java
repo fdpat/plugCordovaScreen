@@ -54,7 +54,6 @@ public class AlarmPlugin extends CordovaPlugin {
 			if ("programAlarm".equals(action)) {
 				cordova.getThreadPool().execute(new Runnable() {
 					public void run() {
-						// Main Code goes here
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 				Date aDate = sdf.parse(args.getString(0).replace("Z", "+0000"));
 				
@@ -80,10 +79,10 @@ public class AlarmPlugin extends CordovaPlugin {
 				alarmMgr.set(AlarmManager.RTC_WAKEUP,  aDate.getTime(), alarmIntent);
 				
 				callbackContext.success("Alarm set at: " +sdf.format(aDate));
-			    return true; 		
-						//callbackContext.success();
+						callbackContext.success(); // Thread-safe.
 					}
 				});
+				return true;
 				
 			}else if("programAlarmNew".equals(action)){
 
