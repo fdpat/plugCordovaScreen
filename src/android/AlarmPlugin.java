@@ -84,17 +84,31 @@ public class AlarmPlugin extends CordovaPlugin {
 			}else if("unsetAlarm".equals(action)){
 				JSONObject arg_object = args.getJSONObject(0);
 				int id = arg_object.getInt("ringId");
+		
+		// AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        // Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
+        // intent.putExtra(ONE_TIME, Boolean.FALSE);
+        // PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
+        //After after 5 seconds
+        // am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 5 , pi);
+    
+		// Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
+        // PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
+        // AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        // alarmManager.cancel(sender);
+		
+		
 				
-				AlarmManager alarmMgr = (AlarmManager)(this.cordova.getActivity().getSystemService(Context.ALARM_SERVICE));
 				
 				PendingIntent alarmIntent;     
 				Intent intent = new Intent(this.cordova.getActivity(), AlarmReceiver.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				alarmIntent = PendingIntent.getActivity(this.cordova.getActivity(), id, intent, 0);
+				AlarmManager alarmMgr = (AlarmManager)(this.cordova.getActivity().getSystemService(Context.ALARM_SERVICE));
 				
-				alarmIntent.cancel();
+				//alarmIntent.cancel();
 				alarmMgr.cancel(alarmIntent);
-				PendingIntent.getActivity(this.cordova.getActivity(), id, intent, 0).cancel();
+				//PendingIntent.getActivity(this.cordova.getActivity(), id, intent, 0).cancel();
 				callbackContext.success("Alarm unset, id: " +id);
 				return true;
 			}
