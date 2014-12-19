@@ -21,7 +21,7 @@ var alarm = {
             errorCallback,
             "AlarmPlugin",
             "unsetAlarm",
-            [{"ringId":alarmDate}]
+            [{"ringId": id}]
         );
     }
 };
