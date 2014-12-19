@@ -90,9 +90,11 @@ public class AlarmPlugin extends CordovaPlugin {
 				PendingIntent alarmIntent;     
 				Intent intent = new Intent(this.cordova.getActivity(), AlarmReceiver.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				PendingIntent.getBroadcast(this.cordova.getActivity(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT).cancel();
 				
-				//alarmMgr.cancel(alarmIntent);
+				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), id, intent, 0);
+				
+				alarmMgr.cancel(alarmIntent);
+				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT).cancel();
 				callbackContext.success("Alarm unset, id: " +id);
 				return true;
 			}
