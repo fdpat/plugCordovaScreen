@@ -13,9 +13,6 @@ var alarm = {
         );
     },
     unset: function(id, successCallback, errorCallback){
-        if(alarmDate < new Date())
-            return;
-
         cordova.exec(
             successCallback,
             errorCallback,
