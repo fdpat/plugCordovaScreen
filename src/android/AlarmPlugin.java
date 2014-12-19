@@ -78,7 +78,7 @@ public class AlarmPlugin extends CordovaPlugin {
 				
 				alarmMgr.cancel(alarmIntent);
 				alarmMgr.set(AlarmManager.RTC_WAKEUP,  aDate.getTime(), alarmIntent);
-				alarmMgr.cancel(alarmIntent);
+
 				callbackContext.success("Alarm set at: " +sdf.format(aDate));
 			    return true; 		
 			}else if("unsetAlarm".equals(action)){
@@ -97,18 +97,25 @@ public class AlarmPlugin extends CordovaPlugin {
         // AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         // alarmManager.cancel(sender);
 		
-		
-				
+						AlarmManager alarmMgr = (AlarmManager)(this.cordova.getActivity().getSystemService(Context.ALARM_SERVICE));
 				
 				PendingIntent alarmIntent;     
 				Intent intent = new Intent(this.cordova.getActivity(), AlarmReceiver.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				alarmIntent = PendingIntent.getActivity(this.cordova.getActivity(), id, intent, 0);
-				AlarmManager alarmMgr = (AlarmManager)(this.cordova.getActivity().getSystemService(Context.ALARM_SERVICE));
+				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), id, intent, 0);
 				
-				alarmIntent.cancel();
 				alarmMgr.cancel(alarmIntent);
-				PendingIntent.getActivity(this.cordova.getActivity(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT).cancel();
+				
+				
+				// PendingIntent alarmIntent;     
+				// Intent intent = new Intent(this.cordova.getActivity(), AlarmReceiver.class);
+				// intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				// alarmIntent = PendingIntent.getActivity(this.cordova.getActivity(), id, intent, 0);
+				// AlarmManager alarmMgr = (AlarmManager)(this.cordova.getActivity().getSystemService(Context.ALARM_SERVICE));
+				
+				// alarmIntent.cancel();
+				// alarmMgr.cancel(alarmIntent);
+				// PendingIntent.getActivity(this.cordova.getActivity(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT).cancel();
 				callbackContext.success("Alarm unset, id: " +id);
 				return true;
 			}
