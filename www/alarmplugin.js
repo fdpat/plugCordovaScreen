@@ -20,6 +20,15 @@ var alarm = {
             "unsetAlarm",
             [{"ringId": id}]
         );
+    },
+	unsetAll: function(id, successCallback, errorCallback){
+        cordova.exec(
+            successCallback,
+            errorCallback,
+            "AlarmPlugin",
+            "unsetAlarmAll",
+            [{"arrayId": id}]
+        );
     }
 };
 module.exports = alarm;
