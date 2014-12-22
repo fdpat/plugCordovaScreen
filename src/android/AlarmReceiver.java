@@ -34,7 +34,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent.setAction("com.uniclau.alarmplugin.ALARM");
         intent.setPackage(context.getPackageName());
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("url", "file:///android_asset/www/wakescreen.html");
+        intent.putExtra("url", "file:///android_asset/www/wakeScreen.html");
         context.startActivity(intent);
     }
 }
