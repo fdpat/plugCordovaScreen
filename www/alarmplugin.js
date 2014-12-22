@@ -20,7 +20,6 @@ var alarm = {
             "unsetAlarm",
             [{"ringId": id}]
         );
-		alert(successCallback);
     }
 };
 module.exports = alarm;
