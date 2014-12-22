@@ -4,8 +4,8 @@ var alarm = {
     		return;
     	
         cordova.exec(
-            alert(successCallback),
-            alert(errorCallback),
+            successCallback,
+            errorCallback,
             "AlarmPlugin",
             "programAlarm",
             [{"ringDate":alarmDate,
