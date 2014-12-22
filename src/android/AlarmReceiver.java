@@ -5,24 +5,20 @@ import android.app.KeyguardManager.KeyguardLock;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.SystemClock;
 import android.util.Log;
 import android.os.Vibrator;
-import android.view.SoundEffectConstants;
 
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d("AlarmPlugin", "AlarmReceived");
-        audioManager = (AudioManager) cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
-		audioManager.playSoundEffect(SoundEffectConstants.CLICK);
+        
 /*        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         pm.wakeUp(SystemClock.uptimeMillis());
 */
-		audioManager.playSoundEffect(SoundEffectConstants.CLICK);
         PowerManager pm = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
         WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
         wakeLock.acquire();
