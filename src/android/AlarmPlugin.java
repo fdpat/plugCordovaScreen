@@ -23,21 +23,7 @@ import android.os.Vibrator;
 
 
 public class AlarmPlugin extends CordovaPlugin {
-		@Override
-		public void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
-			super.init(); // Calling this is necessary to make this work
-			appView.addJavascriptInterface(this, "MainActivity");
-
-			/* "this" points the to the object of the current activity. "MainActivity" is used to refer "this" object in JavaScript as in Step 3. */
-
-			//super.loadUrl("file:///android_asset/www/index.html");
-		}
-		
-		public int customFunctionCalled() {
-			return 2;
-		}
-		
+	
 	   @Override
 	    public void onPause(boolean multitasking) {
 	        Log.d("AlarmPlugin", "onPause");

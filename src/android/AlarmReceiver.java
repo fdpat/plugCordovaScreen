@@ -35,6 +35,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
         v.vibrate(vibetime);
+		WebView AppView = new WebView();
+		appView.addJavascriptInterface(this, "MainActivity");
 		
         intent = new Intent();
         intent.setAction("com.uniclau.alarmplugin.ALARM");
