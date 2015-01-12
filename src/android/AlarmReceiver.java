@@ -26,10 +26,13 @@ public class AlarmReceiver extends BroadcastReceiver {
         KeyguardManager keyguardManager = (KeyguardManager)context.getSystemService(Context.KEYGUARD_SERVICE); 
         KeyguardLock keyguardLock =  keyguardManager.newKeyguardLock("TAG");
         keyguardLock.disableKeyguard();
-		int vibetime = Integer.parseInt(intent.getStringExtra("KEY_ROWID"));
+		int vibetime = intent.getIntExtra("KEY_ROWID"));
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+		if(vibetime < 5000){
+		v.vibrate(2000);
+		}else{
         v.vibrate(vibetime);
-  
+  }
         intent = new Intent();
         intent.setAction("com.uniclau.alarmplugin.ALARM");
         intent.setPackage(context.getPackageName());
