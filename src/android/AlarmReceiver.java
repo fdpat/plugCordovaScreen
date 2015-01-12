@@ -1,6 +1,6 @@
 package com.uniclau.alarmplugin;
 
-/*import android.app.KeyguardManager;
+import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,7 +9,8 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.SystemClock;
 import android.util.Log;
-import android.os.Vibrator;*/
+import android.os.Vibrator;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONObject;
