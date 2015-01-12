@@ -35,7 +35,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
         v.vibrate(vibetime);
-		WebView AppView = new WebView();
+		CordovaWebView AppView = new CordovaWebView();
 		appView.addJavascriptInterface(this, "MainActivity");
 		
         intent = new Intent();
