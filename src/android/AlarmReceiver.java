@@ -26,7 +26,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         KeyguardManager keyguardManager = (KeyguardManager)context.getSystemService(Context.KEYGUARD_SERVICE); 
         KeyguardLock keyguardLock =  keyguardManager.newKeyguardLock("TAG");
         keyguardLock.disableKeyguard();
-		int vibetime = intent.getIntExtra("KEY_ROWID");
+		int vibetime = Integer.parseInt(intent.getStringExtra("KEY_ROWID"));
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(vibetime);
   
