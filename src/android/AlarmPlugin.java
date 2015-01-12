@@ -21,6 +21,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.os.Vibrator;
 import android.app.Notification;
+import android.app.NotificationManager;
 
 public class AlarmPlugin extends CordovaPlugin {
 	
