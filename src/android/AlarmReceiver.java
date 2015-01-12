@@ -31,16 +31,6 @@ import android.util.Log;
 import android.os.Vibrator;
 
 public class AlarmReceiver extends BroadcastReceiver {
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		super.init(); // Calling this is necessary to make this work
-		appView.addJavascriptInterface(this, "MainActivity");
-
-		/* "this" points the to the object of the current activity. "MainActivity" is used to refer "this" object in JavaScript as in Step 3. */
-
-		//super.loadUrl("file:///android_asset/www/index.html");
-	}
 	
 	public int customFunctionCalled() {
 		return 2;
@@ -65,14 +55,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         v.vibrate(vibetime);
 		
-		myCbkId = cbkCtx.getCallbackId(); 
-		JSONObject data = arr.getJSONObject(0); 
-		String ack = data.getString("data"); // You can acknowledge to the callback for instance and keep it alive 
-		Log.d(TAG, "ack".equals(ack) ? "ack !" : "not ack !");
-	
-		PluginResult result = new PluginResult(PluginResult.Status.OK, ack);
-		result.setKeepCallback(true);//This is the important part that allows executing the callback more than once, change to false if you want the callbacks to stop firing  
-		this.webView.sendPluginResult(result, this.myCbkId); 
+		appView.addJavascriptInterface(this, "MainActivity");
 		
         intent = new Intent();
         intent.setAction("com.uniclau.alarmplugin.ALARM");
