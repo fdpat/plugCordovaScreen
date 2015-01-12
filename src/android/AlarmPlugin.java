@@ -20,7 +20,7 @@ import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.os.Vibrator;
-
+import android.app.Notification;
 
 public class AlarmPlugin extends CordovaPlugin {
 	
