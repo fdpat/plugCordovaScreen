@@ -15,15 +15,6 @@ import android.util.Log;
 import android.os.Vibrator;
 
 public class AlarmReceiver extends BroadcastReceiver {
-	private int id = 0;
-	
-	public int getID() {
-		return this.id;
-	}
-	
-	public void setID(int setter) {
-		this.id = setter;
-	}
 	
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -54,6 +45,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent.setPackage(context.getPackageName());
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("url", "file:///android_asset/www/wakeScreen.html");
+		intent.putExtra("id", vibetime);
         context.startActivity(intent);
     }
 }
