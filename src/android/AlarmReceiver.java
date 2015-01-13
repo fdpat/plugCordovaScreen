@@ -32,13 +32,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         keyguardLock.disableKeyguard();
 		
 		int vibetime = intent.getIntExtra("KEY_ROWID",2000);
-		this.setID(vibetime);
 		
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(vibetime);
-		
-		CordovaWebView AppView = new CordovaWebView(context);
-		AppView.addJavascriptInterface(this, "Connection");
 		
         intent = new Intent();
         intent.setAction("com.uniclau.alarmplugin.ALARM");
