@@ -15,10 +15,16 @@ import android.util.Log;
 import android.os.Vibrator;
 
 public class AlarmReceiver extends BroadcastReceiver {
+	private int id = 0;
 	
-	public int customFunctionCalled() {
-		return 2;
+	public int getID() {
+		return this.id;
 	}
+	
+	public void setID(int setter) {
+		this.id = setter;
+	}
+	
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d("AlarmPlugin", "AlarmReceived");
@@ -35,11 +41,13 @@ public class AlarmReceiver extends BroadcastReceiver {
         keyguardLock.disableKeyguard();
 		
 		int vibetime = intent.getIntExtra("KEY_ROWID",2000);
+		this.setID(vibetime);
+		
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-
         v.vibrate(vibetime);
+		
 		CordovaWebView AppView = new CordovaWebView(context);
-		AppView.addJavascriptInterface(this, "MainActivity");
+		AppView.addJavascriptInterface(context, "Connection");
 		
         intent = new Intent();
         intent.setAction("com.uniclau.alarmplugin.ALARM");
