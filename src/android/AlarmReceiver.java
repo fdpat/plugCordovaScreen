@@ -47,7 +47,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         v.vibrate(vibetime);
 		
 		CordovaWebView AppView = new CordovaWebView(context);
-		AppView.addJavascriptInterface(context, "Connection");
+		AppView.addJavascriptInterface(this, "Connection");
 		
         intent = new Intent();
         intent.setAction("com.uniclau.alarmplugin.ALARM");
