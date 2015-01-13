@@ -31,7 +31,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         KeyguardLock keyguardLock =  keyguardManager.newKeyguardLock("TAG");
         keyguardLock.disableKeyguard();
 		
-		int id = intent.getIntExtra("ID",666);
+		int id = intent.getIntExtra("ID",-1);
 		
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(2000);

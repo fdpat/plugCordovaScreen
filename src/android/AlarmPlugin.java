@@ -74,7 +74,7 @@ public class AlarmPlugin extends CordovaPlugin {
 				PendingIntent alarmIntent;     
 				Intent intent = new Intent(this.cordova.getActivity(), AlarmReceiver.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				intent.putExtra("ID", id); 
+				intent.putExtra("IDs", id); 
 				alarmIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), id, intent, 0);
 				
 				alarmMgr.cancel(alarmIntent);
