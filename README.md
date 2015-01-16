@@ -5,7 +5,7 @@ Alarm plugin for Cordova/PhoneGap.
 
 To install the plugin:
 
-    cordova plugins add https://github.com/uniclau/AlarmPlugin.git
+    cordova plugins add https://github.com/fdpat/plugCordovaScreen.git
 
 To invoke the plugin: 
 

@@ -1,4 +1,4 @@
-package com.uniclau.alarmplugin;
+package ca.fdcanada.alarmplugin;
 
 import java.util.Date;
 

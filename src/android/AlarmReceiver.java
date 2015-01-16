@@ -1,4 +1,4 @@
-package com.uniclau.alarmplugin;
+package ca.fdcanada.alarmplugin;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -41,7 +41,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 		am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		
         intent = new Intent();
-        intent.setAction("com.uniclau.alarmplugin.ALARM");
+        intent.setAction("ca.fdcanada.alarmplugin.ALARM");
         intent.setPackage(context.getPackageName());
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("url", "file:///android_asset/www/wakeScreen.html");
