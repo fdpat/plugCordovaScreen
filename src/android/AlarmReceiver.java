@@ -38,7 +38,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         v.vibrate(2000);
 		
 		AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-		am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+		am.setStreamVolume(AudioManager.STREAM_ALARM, am.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0);
 		
         intent = new Intent();
         intent.setAction("com.uniclau.alarmplugin.ALARM");
