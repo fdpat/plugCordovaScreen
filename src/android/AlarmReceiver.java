@@ -13,6 +13,7 @@ import android.os.PowerManager.WakeLock;
 import android.os.SystemClock;
 import android.util.Log;
 import android.os.Vibrator;
+import android.media.AudioManager;
 
 public class AlarmReceiver extends BroadcastReceiver {
 	
@@ -35,6 +36,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 		
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(2000);
+		
+		AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		
         intent = new Intent();
         intent.setAction("com.uniclau.alarmplugin.ALARM");
